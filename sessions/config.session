@@ -1,0 +1,25 @@
+#!/bin/bash
+SESSION_NAME="config"
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
+# Source the session.sh library
+source "$SCRIPT_DIR/session.sh"
+
+# Start a new tmux session with window #1
+tmux_new "NeoVim"
+
+# Create additional windows
+tmux_neww 2 "Tmux"
+tmux_neww 3 "Tmux PL"
+tmux_neww 4 "Fish"
+
+# Send commands to specific windows
+tmux_send 1 "cd ~/Git/config/nvim && nvim" C-m " " "b"
+tmux_send 2 "cd ~/Git/config/tmux && nvim" C-m " " "b"
+tmux_send 3 "cd ~/Git/config/tmux-powerline && nvim" C-m " " "b"
+tmux_send 4 "cd ~/Git/config/fish && nvim" C-m " " "b"
+
+# Attach to the session
+tmux_attach

@@ -1,18 +1,23 @@
 #!/bin/bash
-SESSION_NAME="website"
 
-# Start a new tmux session
-tmux new-session -d -s $SESSION_NAME -n "Website"
+# Get the directory where this script is located
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-# Create additional windows (tabs) with names
-tmux new-window -t $SESSION_NAME:2 -n "Frontend"
-tmux new-window -t $SESSION_NAME:3 -n "Backend"
+# Source the session.sh library to create helper functions
+source "$SCRIPT_DIR/session.sh"
 
-# Send commands to specific tabs (optional)
-tmux send-keys -t $SESSION_NAME:1 "cd ~/Designing/ESLabWebsite && nvim" C-m " " "b"
-tmux send-keys -t $SESSION_NAME:2 "cd ~/Designing/ESLabWebsite/frontend && nvim" C-m " " "b"
-tmux send-keys -t $SESSION_NAME:3 "cd ~/Designing/ESLabWebsite/backend && nvim" C-m " " "b"
+# Start a new tmux session with window #1
+tmux_new "Website"
+
+# Create additional windows
+tmux_neww 2 "Frontend"
+tmux_neww 3 "Backend"
+
+# Send commands to specific windows
+tmux_send 1 "cd ~/Designing/ESLabWebsite && nvim" C-m " " "b"
+tmux_send 2 "cd ~/Designing/ESLabWebsite/frontend && nvim" C-m " " "b"
+tmux_send 3 "cd ~/Designing/ESLabWebsite/backend && nvim" C-m " " "b"
 
 # Attach to the session
-tmux attach -t $SESSION_NAME
+tmux_attach
 

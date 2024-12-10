@@ -1,0 +1,29 @@
+session_name: config
+
+global_options:
+  remain-on-exit: true
+
+windows:
+  - window_name: NeoVim
+    layout: main-vertical
+    start_directory: ~/Git/config/nvim
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
+
+  - window_name: Tmux
+    layout: main-vertical
+    start_directory: ~/Git/config/tmux
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
+
+  - window_name: Tmux PL
+    layout: main-vertical
+    start_directory: ~/Git/config/tmux-powerline
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
+
+  - window_name: Fish
+    layout: main-vertical
+    start_directory: ~/Git/config/fish
+    panes:
+      - shell: nvim +ToggleSidebarCarbon

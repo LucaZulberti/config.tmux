@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# List sessions with tmuxp
+sessions=($(tmuxp ls))
+sessions+=("<new in current directory>")
+
+# Fuzzy find to select a session
+selected=$(printf "%s\n" "${sessions[@]}" | fzf)
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# Handle the user's choice
+if [ "$selected" == "<new in current directory>" ]; then
+    # Use the current directory name as the session name
+    session_name=$(basename "$PWD")
+
+    tmux new-session -A -s i"$session_name" -t "Main"
+else
+    # Load session with tmuxp
+    tmuxp load "$selected"
+fi

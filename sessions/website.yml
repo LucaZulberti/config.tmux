@@ -1,0 +1,23 @@
+session_name: website
+
+global_options:
+  remain-on-exit: true
+
+windows:
+  - window_name: Website
+    layout: main-vertical
+    start_directory: ~/Designing/ESLabWebsite
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
+
+  - window_name: Frontend 
+    layout: main-vertical
+    start_directory: ~/Designing/ESLabWebsite/frontend
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
+
+  - window_name: Backend
+    layout: main-vertical
+    start_directory: ~/Designing/ESLabWebsite/backend
+    panes:
+      - shell: nvim +ToggleSidebarCarbon
